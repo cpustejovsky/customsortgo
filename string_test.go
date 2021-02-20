@@ -24,3 +24,21 @@ func TestReverseSortWords(t *testing.T) {
 	th.AssertEqual(t, got, want)
 
 }
+
+func TestSortWord(t *testing.T) {
+	w := "cbadegf"
+	want := "abcdefg"
+	got := csgo.SortWord(w)
+
+	th.AssertEqual(t, got, want)
+
+}
+
+func TestReverseSortWord(t *testing.T) {
+	w := "cbadegf"
+	want := "gfedcba"
+	got := csgo.ReverseSortWord(w)
+
+	th.AssertEqual(t, got, want)
+
+}
