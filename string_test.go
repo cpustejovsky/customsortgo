@@ -1,4 +1,4 @@
-package string_test
+package customsortgo_test
 
 import (
 	"testing"
