@@ -7,3 +7,14 @@ I'm not a big fan of Leetcode style coding challenges becuase it just doesn't se
 Having pre-written code to allow me to provide value more effectively is, however.
 
 Plan on using this library either by importing the module or copying and pasting for various code challenges to see how they do.
+
+## Use
+
+```go
+csgo "github.com/cpustejovsky/customsortgo"
+//...
+w := []string{"cat", "albatross", "dolphin", "bee", "zebra", "aardvark"}
+sorted, err := csgo.Sort(w)
+
+fmt.Println(sorted) // [aardvark albatross bee cat dolphin zebra]
+```
