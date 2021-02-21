@@ -1,7 +1,7 @@
 package customsortgo
 
 import (
-	"errors"
+	"fmt"
 	"reflect"
 	"sort"
 )
@@ -19,7 +19,7 @@ func DetermineSortedType(list interface{}) (sort.Interface, error) {
 	case "[]float64":
 		return sort.Float64Slice(list.([]float64)), nil
 	default:
-		err := errors.New("Provided list was not made up of string, int, or float64 types")
+		err := fmt.Errorf("Provided list was not made up of string, int, or float64 types. User provided list of type %v", reflect.TypeOf(list).String())
 		return nil, err
 	}
 }

@@ -50,3 +50,12 @@ func TestSortFloat64s(t *testing.T) {
 		th.AssertEqual(t, got, sort.Float64Slice(want))
 	}
 }
+
+func TestSortError(t *testing.T) {
+	c := "test"
+	want := "Provided list was not made up of string, int, or float64 types. User provided list of type string"
+	_, err := csgo.Sort(c)
+	if !(th.ErrorContains(err, want)) {
+		t.Errorf("got:\n%v\nwant\n%v\n", err, want)
+	}
+}
