@@ -11,8 +11,12 @@ Plan on using this library either by importing the module or copying and pasting
 ## Use
 
 ```go
-csgo "github.com/cpustejovsky/customsortgo"
-//...
+import (
+  "fmt"
+
+  csgo "github.com/cpustejovsky/customsortgo"
+)
+
 w := []string{"cat", "albatross", "dolphin", "bee", "zebra", "aardvark"}
 sorted, err := csgo.Sort(w)
 
