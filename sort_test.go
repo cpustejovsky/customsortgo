@@ -40,10 +40,33 @@ func TestSortInts(t *testing.T) {
 		th.AssertEqual(t, got, sort.IntSlice(want))
 	}
 }
+
+func TestReverseSortInts(t *testing.T) {
+	n := []int{1, 3, 5, 2, 7, 6, 4}
+	want := []int{7, 6, 5, 4, 3, 2, 1}
+	got, err := csgo.ReverseSort(n)
+	if err != nil {
+		t.Error(err)
+	} else {
+		th.AssertEqual(t, got, sort.IntSlice(want))
+	}
+}
+
 func TestSortFloat64s(t *testing.T) {
 	n := []float64{1.1, 3.3, 5.5, 2.2, 7.7, 6.6, 4.4}
 	want := []float64{1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7}
 	got, err := csgo.Sort(n)
+	if err != nil {
+		t.Error(err)
+	} else {
+		th.AssertEqual(t, got, sort.Float64Slice(want))
+	}
+}
+
+func TestReverseSortFloat64s(t *testing.T) {
+	n := []float64{1.1, 3.3, 5.5, 2.2, 7.7, 6.6, 4.4}
+	want := []float64{7.7, 6.6, 5.5, 4.4, 3.3, 2.2, 1.1}
+	got, err := csgo.ReverseSort(n)
 	if err != nil {
 		t.Error(err)
 	} else {
