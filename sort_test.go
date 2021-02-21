@@ -1,0 +1,31 @@
+package customsortgo_test
+
+import (
+	"sort"
+	"testing"
+
+	csgo "github.com/cpustejovsky/customsortgo"
+	th "github.com/cpustejovsky/customsortgo/testhelp"
+)
+
+func TestSortForStrings(t *testing.T) {
+	w := []string{"cat", "albatross", "dolphin", "bee", "zebra", "aardvark"}
+	want := []string{"aardvark", "albatross", "bee", "cat", "dolphin", "zebra"}
+	got, err := csgo.Sort(w)
+	if err != nil {
+		t.Error(err)
+	} else {
+		th.AssertEqual(t, got, sort.StringSlice(want))
+	}
+}
+
+func TestReverseSortForStrings(t *testing.T) {
+	w := []string{"cat", "albatross", "dolphin", "bee", "zebra", "aardvark"}
+	want := []string{"zebra", "dolphin", "cat", "bee", "albatross", "aardvark"}
+	got, err := csgo.ReverseSort(w)
+	if err != nil {
+		t.Error(err)
+	} else {
+		th.AssertEqual(t, got, sort.StringSlice(want))
+	}
+}
