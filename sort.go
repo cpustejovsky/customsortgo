@@ -6,6 +6,10 @@ import (
 	"sort"
 )
 
+//DetermineSortedType takes a parameter
+//if paramter is a slice of strings, ints, or float64s,
+//it returns that slice converted to a sort.FooSlice type
+//else it returns an error
 func DetermineSortedType(list interface{}) (sort.Interface, error) {
 	switch reflect.TypeOf(list).String() {
 	case "[]string":
@@ -20,7 +24,7 @@ func DetermineSortedType(list interface{}) (sort.Interface, error) {
 	}
 }
 
-//Sort takes a slice of strings and returns them in a sorted order
+//Sort takes a slice and returns the items in a sorted order
 func Sort(list interface{}) (sort.Interface, error) {
 	s, err := DetermineSortedType(list)
 	if err != nil {
@@ -30,7 +34,7 @@ func Sort(list interface{}) (sort.Interface, error) {
 	return s, nil
 }
 
-//ReverseSort takes a slice of strings and returns them in a reverse sorted order
+//ReverseSort takes a slice and returns the items in a reverse sorted order
 func ReverseSort(list interface{}) (sort.Interface, error) {
 	s, err := DetermineSortedType(list)
 	if err != nil {
