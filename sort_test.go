@@ -40,3 +40,13 @@ func TestSortInts(t *testing.T) {
 		th.AssertEqual(t, got, sort.IntSlice(want))
 	}
 }
+func TestSortFloat64s(t *testing.T) {
+	n := []float64{1.1, 3.3, 5.5, 2.2, 7.7, 6.6, 4.4}
+	want := []float64{1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7}
+	got, err := csgo.Sort(n)
+	if err != nil {
+		t.Error(err)
+	} else {
+		th.AssertEqual(t, got, sort.Float64Slice(want))
+	}
+}
