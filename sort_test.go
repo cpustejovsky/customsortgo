@@ -29,3 +29,14 @@ func TestReverseSortForStrings(t *testing.T) {
 		th.AssertEqual(t, got, sort.StringSlice(want))
 	}
 }
+
+func TestSortInts(t *testing.T) {
+	n := []int{1, 3, 5, 2, 7, 6, 4}
+	want := []int{1, 2, 3, 4, 5, 6, 7}
+	got, err := csgo.Sort(n)
+	if err != nil {
+		t.Error(err)
+	} else {
+		th.AssertEqual(t, got, sort.IntSlice(want))
+	}
+}
