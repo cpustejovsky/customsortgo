@@ -1,7 +1,6 @@
 package customsortgo_test
 
 import (
-	"sort"
 	"testing"
 
 	csgo "github.com/cpustejovsky/customsortgo"
@@ -15,7 +14,7 @@ func TestSortForStrings(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	} else {
-		th.AssertEqual(t, got, sort.StringSlice(want))
+		th.AssertEqual(t, got, (want))
 	}
 }
 
@@ -26,7 +25,7 @@ func TestReverseSortForStrings(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	} else {
-		th.AssertEqual(t, got, sort.StringSlice(want))
+		th.AssertEqual(t, got, (want))
 	}
 }
 
@@ -37,7 +36,7 @@ func TestSortInts(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	} else {
-		th.AssertEqual(t, got, sort.IntSlice(want))
+		th.AssertEqual(t, got, (want))
 	}
 }
 
@@ -48,7 +47,7 @@ func TestReverseSortInts(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	} else {
-		th.AssertEqual(t, got, sort.IntSlice(want))
+		th.AssertEqual(t, got, (want))
 	}
 }
 
@@ -59,7 +58,7 @@ func TestSortFloat64s(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	} else {
-		th.AssertEqual(t, got, sort.Float64Slice(want))
+		th.AssertEqual(t, got, (want))
 	}
 }
 
@@ -70,7 +69,7 @@ func TestReverseSortFloat64s(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	} else {
-		th.AssertEqual(t, got, sort.Float64Slice(want))
+		th.AssertEqual(t, got, (want))
 	}
 }
 
