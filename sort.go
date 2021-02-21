@@ -25,8 +25,8 @@ func TurnToSortInterface(list interface{}) (sort.Interface, error) {
 }
 
 //TurnFromSortInterface takes a parameter
-//if paramter is a slice of strings, ints, or float64s,
-//it returns that slice converted to a sort.FooSlice type
+//if paramter is type sort.StringSlice, sort.IntSlice, or sort.Float64Slice,
+//it returns that slice converted to a []string,[]int, []float64 type, respectively
 //else it returns an error
 func TurnFromSortInterface(list interface{}) (interface{}, error) {
 	switch reflect.TypeOf(list).String() {
