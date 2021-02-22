@@ -37,7 +37,6 @@ func SortWords(words []string) []string {
 	return []string(w)
 }
 
-
 //ReverseSortWords takes a slice of strings and returns them in a reverse sorted order
 func ReverseSortWords(words []string) []string {
 	w := Words((words))
