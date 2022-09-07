@@ -6,11 +6,11 @@ import (
 	"sort"
 )
 
-//TurnToSortInterface takes a parameter
-//if paramter is a slice of strings, ints, or float64s,
-//it returns that slice converted to a sort.FooSlice type
-//else it returns an error
-func TurnToSortInterface(list interface{}) (sort.Interface, error) {
+// TurnToSortInterface takes a parameter
+// if paramter is a slice of strings, ints, or float64s,
+// it returns that slice converted to a sort.FooSlice type
+// else it returns an error
+func TurnToSortInterface(list any) (sort.Interface, error) {
 	switch reflect.TypeOf(list).String() {
 	case "[]string":
 		return sort.StringSlice(list.([]string)), nil
@@ -24,11 +24,11 @@ func TurnToSortInterface(list interface{}) (sort.Interface, error) {
 	}
 }
 
-//TurnFromSortInterface takes a parameter
-//if paramter is type sort.StringSlice, sort.IntSlice, or sort.Float64Slice,
-//it returns that slice converted to a []string,[]int, []float64 type, respectively
-//else it returns an error
-func TurnFromSortInterface(list interface{}) (interface{}, error) {
+// TurnFromSortInterface takes a parameter
+// if paramter is type sort.StringSlice, sort.IntSlice, or sort.Float64Slice,
+// it returns that slice converted to a []string,[]int, []float64 type, respectively
+// else it returns an error
+func TurnFromSortInterface(list any) (any, error) {
 	switch reflect.TypeOf(list).String() {
 	case "sort.StringSlice":
 		var s []string
@@ -54,8 +54,8 @@ func TurnFromSortInterface(list interface{}) (interface{}, error) {
 	}
 }
 
-//Sort takes a slice and returns the items in a sorted order
-func Sort(list interface{}) (interface{}, error) {
+// Sort takes a slice and returns the items in a sorted order
+func Sort(list any) (any, error) {
 	s, err := TurnToSortInterface(list)
 	if err != nil {
 		return nil, err
@@ -68,8 +68,8 @@ func Sort(list interface{}) (interface{}, error) {
 	return ns, nil
 }
 
-//ReverseSort takes a slice and returns the items in a reverse sorted order
-func ReverseSort(list interface{}) (interface{}, error) {
+// ReverseSort takes a slice and returns the items in a reverse sorted order
+func ReverseSort(list any) (any, error) {
 	s, err := TurnToSortInterface(list)
 	if err != nil {
 		return nil, err
