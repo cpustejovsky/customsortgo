@@ -1,10 +1,10 @@
 package customsortgo_test
 
 import (
+	"github.com/stretchr/testify/assert"
 	"testing"
 
 	csgo "github.com/cpustejovsky/customsortgo"
-	th "github.com/cpustejovsky/customsortgo/testhelp"
 )
 
 var testChars csgo.Chars = []rune("hello, world!")
@@ -12,27 +12,25 @@ var testChars csgo.Chars = []rune("hello, world!")
 func TestChars(t *testing.T) {
 	wantLen := 13
 	gotLen := testChars.Len()
-	th.AssertEqual(t, gotLen, wantLen)
+	assert.Equal(t, wantLen, gotLen)
 
-	wantLessFirst := false
 	gotLessFirst := testChars.Less(0, 1)
-	th.AssertEqual(t, gotLessFirst, wantLessFirst)
+	assert.Equal(t, false, gotLessFirst)
 
 	wantSwap := "ehllo, world!"
 	testChars.Swap(0, 1)
-	th.AssertEqual(t, string(testChars), wantSwap)
+	gotSwap := string(testChars)
+	assert.Equal(t, wantSwap, gotSwap)
 
-	wantLessSecond := true
 	gotLessSecond := testChars.Less(0, 1)
-	th.AssertEqual(t, gotLessSecond, wantLessSecond)
+	assert.Equal(t, true, gotLessSecond)
 }
 
 func TestSortWord(t *testing.T) {
 	w := "cbadegf"
 	want := "abcdefg"
 	got := csgo.SortWord(w)
-
-	th.AssertEqual(t, got, want)
+	assert.Equal(t, want, got)
 
 }
 
@@ -41,6 +39,5 @@ func TestReverseSortWord(t *testing.T) {
 	want := "gfedcba"
 	got := csgo.ReverseSortWord(w)
 
-	th.AssertEqual(t, got, want)
-
+	assert.Equal(t, want, got)
 }

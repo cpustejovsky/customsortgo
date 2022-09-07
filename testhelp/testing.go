@@ -1,17 +1,8 @@
 package testhelp
 
 import (
-	"reflect"
 	"strings"
-	"testing"
 )
-
-// AssertEqual takes two interfaces and determines if they are equal
-func AssertEqual(t *testing.T, got, want any) {
-	if !reflect.DeepEqual(got, want) {
-		t.Errorf("got:\n%v\nwant\n%v\n", got, want)
-	}
-}
 
 // ErrorContains checks if the error message in out contains the text in
 // want.
