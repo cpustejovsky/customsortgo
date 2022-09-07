@@ -6,8 +6,16 @@ import (
 	"sort"
 )
 
+type IncorrectTypeError struct {
+	list any
+}
+
+func (e *IncorrectTypeError) Error() string {
+	return fmt.Sprintf("provided sort.Interface was not either types sort.StringSlice, sort.IntSlice, sort.Float64Slice; user provided list of type %s", reflect.TypeOf(e.list).String())
+}
+
 // TurnToSortInterface takes a parameter
-// if paramter is a slice of strings, ints, or float64s,
+// if parameter is a slice of strings, ints, or float64s,
 // it returns that slice converted to a sort.FooSlice type
 // else it returns an error
 func TurnToSortInterface(list any) (sort.Interface, error) {
@@ -19,13 +27,12 @@ func TurnToSortInterface(list any) (sort.Interface, error) {
 	case "[]float64":
 		return sort.Float64Slice(list.([]float64)), nil
 	default:
-		err := fmt.Errorf("Provided list was not made up of string, int, or float64 types. User provided list of type %v", reflect.TypeOf(list).String())
-		return nil, err
+		return nil, &IncorrectTypeError{list: list}
 	}
 }
 
 // TurnFromSortInterface takes a parameter
-// if paramter is type sort.StringSlice, sort.IntSlice, or sort.Float64Slice,
+// if parameter is type sort.StringSlice, sort.IntSlice, or sort.Float64Slice,
 // it returns that slice converted to a []string,[]int, []float64 type, respectively
 // else it returns an error
 func TurnFromSortInterface(list any) (any, error) {
@@ -49,8 +56,7 @@ func TurnFromSortInterface(list any) (any, error) {
 		}
 		return s, nil
 	default:
-		err := fmt.Errorf("Provided sort.Interface was not either types sort.StringSlice, sort.IntSlice, sort.Float64Slice. User provided list of type %v", reflect.TypeOf(list).String())
-		return nil, err
+		return nil, &IncorrectTypeError{list: list}
 	}
 }
 

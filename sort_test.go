@@ -2,7 +2,6 @@ package customsortgo_test
 
 import (
 	csgo "github.com/cpustejovsky/customsortgo"
-	th "github.com/cpustejovsky/customsortgo/testhelp"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -57,9 +56,7 @@ func TestReverseSortFloat64s(t *testing.T) {
 
 func TestSortError(t *testing.T) {
 	c := "test"
-	want := "Provided list was not made up of string, int, or float64 types. User provided list of type string"
 	_, err := csgo.Sort(c)
-	if !(th.ErrorContains(err, want)) {
-		t.Errorf("got:\n%v\nwant\n%v\n", err, want)
-	}
+	check := &csgo.IncorrectTypeError{}
+	assert.ErrorAs(t, err, &check)
 }
