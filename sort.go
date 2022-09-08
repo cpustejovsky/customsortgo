@@ -19,12 +19,12 @@ func (e *IncorrectTypeError) Error() string {
 // it returns that slice converted to a sort.FooSlice type
 // else it returns an error
 func TurnToSortInterface(list any) (sort.Interface, error) {
-	switch reflect.TypeOf(list).String() {
-	case "[]string":
+	switch list.(type) {
+	case []string:
 		return sort.StringSlice(list.([]string)), nil
-	case "[]int":
+	case []int:
 		return sort.IntSlice(list.([]int)), nil
-	case "[]float64":
+	case []float64:
 		return sort.Float64Slice(list.([]float64)), nil
 	default:
 		return nil, &IncorrectTypeError{list: list}
@@ -36,20 +36,20 @@ func TurnToSortInterface(list any) (sort.Interface, error) {
 // it returns that slice converted to a []string,[]int, []float64 type, respectively
 // else it returns an error
 func TurnFromSortInterface(list any) (any, error) {
-	switch reflect.TypeOf(list).String() {
-	case "sort.StringSlice":
+	switch list.(type) {
+	case sort.StringSlice:
 		var s []string
 		for _, v := range list.(sort.StringSlice) {
 			s = append(s, v)
 		}
 		return s, nil
-	case "sort.IntSlice":
+	case sort.IntSlice:
 		var s []int
 		for _, v := range list.(sort.IntSlice) {
 			s = append(s, v)
 		}
 		return s, nil
-	case "sort.Float64Slice":
+	case sort.Float64Slice:
 		var s []float64
 		for _, v := range list.(sort.Float64Slice) {
 			s = append(s, v)
