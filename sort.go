@@ -61,7 +61,7 @@ func TurnFromSortInterface(list any) (any, error) {
 }
 
 // Sort takes a slice and returns the items in a sorted order
-func Sort(list any) (any, error) {
+func Sort[T any](list []T) (any, error) {
 	s, err := TurnToSortInterface(list)
 	if err != nil {
 		return nil, err
@@ -75,7 +75,7 @@ func Sort(list any) (any, error) {
 }
 
 // ReverseSort takes a slice and returns the items in a reverse sorted order
-func ReverseSort(list any) (any, error) {
+func ReverseSort[T any](list []T) (any, error) {
 	s, err := TurnToSortInterface(list)
 	if err != nil {
 		return nil, err

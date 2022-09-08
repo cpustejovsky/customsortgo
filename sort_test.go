@@ -54,8 +54,13 @@ func TestReverseSortFloat64s(t *testing.T) {
 	assert.Equal(t, want, got)
 }
 
+type testStruct struct {
+	Foo string
+}
+
 func TestSortError(t *testing.T) {
-	c := "test"
+	ts := testStruct{Foo: "Bar"}
+	c := []testStruct{ts, ts, ts}
 	_, err := csgo.Sort(c)
 	check := &csgo.IncorrectTypeError{}
 	assert.ErrorAs(t, err, &check)
