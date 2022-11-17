@@ -1,10 +1,9 @@
-package customsortgo_test
+package string_test
 
 import (
+	csgo "github.com/cpustejovsky/customsortgo/string"
 	"github.com/stretchr/testify/assert"
 	"testing"
-
-	csgo "github.com/cpustejovsky/customsortgo"
 )
 
 func TestReverseString(t *testing.T) {
