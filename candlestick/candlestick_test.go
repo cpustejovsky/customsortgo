@@ -7,25 +7,26 @@ import (
 )
 
 func TestAggregateTrades(t *testing.T) {
-	trades := []float64{14, 14, 15, 15, 16, 15, 13, 12, 13}
+	trades := []float64{14.0, 14.0, 15.0, 15.0, 16.0, 15.0, 13.0, 12.0, 13.0}
 	want := candlestick.TradeAggregate{Open: 14, Close: 13, High: 16, Low: 12}
-	got := candlestick.AggregateTrades(trades)
+	got := candlestick.NewTradeAggregate(trades)
 	assert.Equal(t, want.Open, got.Open, "Open")
 	assert.Equal(t, want.Close, got.Close, "Close")
 	assert.Equal(t, want.High, got.High, "High")
 	assert.Equal(t, want.Low, got.Low, "Low")
+	assert.Equal(t, 14.0, trades[0])
 }
 
 func BenchmarkAggregateTrades(b *testing.B) {
 	trades := []float64{14, 14, 15, 15, 16, 15, 13, 12, 14, 15, 15, 16, 15, 13, 12, 14, 15, 15, 16, 15, 13, 12, 14, 15, 15, 16, 15, 13, 12, 14, 15, 15, 16, 15, 13, 12, 13}
 	for n := 0; n < b.N; n++ {
-		candlestick.AggregateTrades(trades)
+		candlestick.NewTradeAggregate(trades)
 	}
 }
 
 func BenchmarkAggregateTradesSideEffects(b *testing.B) {
 	trades := []float64{14, 14, 15, 15, 16, 15, 13, 12, 14, 15, 15, 16, 15, 13, 12, 14, 15, 15, 16, 15, 13, 12, 14, 15, 15, 16, 15, 13, 12, 14, 15, 15, 16, 15, 13, 12, 13}
 	for n := 0; n < b.N; n++ {
-		candlestick.AggregateTradesSideEffects(trades)
+		candlestick.AggregateTrades(trades)
 	}
 }

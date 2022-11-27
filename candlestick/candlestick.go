@@ -1,7 +1,7 @@
 package candlestick
 
 import (
-	csgo "github.com/cpustejovsky/customsortgo/sort"
+	csgo "github.com/cpustejovsky/customsortgo/pure"
 	"sort"
 )
 
@@ -12,7 +12,10 @@ type TradeAggregate struct {
 	Low   float64
 }
 
-func AggregateTrades(trades []float64) TradeAggregate {
+// NewTradeAggregate returns a TradeAggregate based on a copy of the income trades slice
+// This is nearly 4x slower than AggregateTrades
+// Use if you do not want to mutate your data
+func NewTradeAggregate(trades []float64) TradeAggregate {
 	sortedTrades := csgo.NewSortedFloats(trades)
 	return TradeAggregate{
 		Open:  trades[0],
@@ -22,7 +25,10 @@ func AggregateTrades(trades []float64) TradeAggregate {
 	}
 }
 
-func AggregateTradesSideEffects(trades []float64) TradeAggregate {
+// AggregateTrades returns a TradeAggregate based on the incoming trades slice, mutating the slice
+// This is nearly 4x faster than NewTradeAggregate
+// Use if the original order of incoming slice does not need to be retained
+func AggregateTrades(trades []float64) TradeAggregate {
 	//Mark first and last items in list of trades
 	ta := TradeAggregate{
 		Open:  trades[0],
