@@ -1,22 +1,24 @@
 package string
 
-// ReverseString reverses a string by replace first and last letter with each other
+// ReverseStringSlow reverses a string by replace first and last letter with each other
 // Starts outward and moves inward. only goes for half the link of the rune slice so it doesn't keep going in a circle
 // Credit to Cyrus Javan (https://github.com/CyrusJavan) for this code recommendation
-func ReverseString(word string) string {
+func ReverseStringSlow(word string) string {
 	r := []rune(word)
-	for i := 0; i < len(r)/2; i++ {
-		r[i], r[len(r)-1-i] = r[len(r)-1-i], r[i]
+	length := len(r)
+	for i := 0; i < length/2; i++ {
+		r[i], r[length-1-i] = r[length-1-i], r[i]
 	}
 	return string(r)
 }
 
-// ReverseStringSlow is a slightly slower way to reverse a string by creating a second rune slice
-func ReverseStringSlow(word string) string {
-	r := []rune(word)
-	var rw []rune
-	for i := len(r) - 1; i >= 0; i-- {
-		rw = append(rw, r[i])
+// ReverseString is a slightly faster way to reverse a string
+// It creates a rune array of the length
+func ReverseString(word string) string {
+	wordLength := len(word)
+	rw := make([]rune, wordLength)
+	for i, l := range word {
+		rw[wordLength-1-i] = l
 	}
 	return string(rw)
 }
