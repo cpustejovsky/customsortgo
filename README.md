@@ -6,15 +6,24 @@ Aside from my punny acronym, this library is to have a collection of custom appl
 
 ## Use
 
-```go
-import (
-  "fmt"
+### Pure Package
 
-  csgo "github.com/cpustejovsky/customsortgo"
+To prevent mutations of the original slice, I created a package that returns a new sorted or reverse sorted slice.
+
+Example
+
+```go
+package main
+
+import (
+	"fmt"
+	csgo "github.com/cpustejovsky/customsortgo/pure"
 )
 
-w := []string{"cat", "albatross", "dolphin", "bee", "zebra", "aardvark"}
-sorted, err := csgo.Sort(w)
-
-fmt.Println(sorted) // [aardvark albatross bee cat dolphin zebra]
+func main() {
+	list := []string{"cat", "albatross", "dolphin", "bee", "zebra", "aardvark"}
+	sorted := csgo.NewSortedStrings(list)
+	fmt.Println(list)   // [cat albatross dolphin bee zebra aardvark]
+	fmt.Println(sorted) // [aardvark albatross bee cat dolphin zebra]
+}
 ```

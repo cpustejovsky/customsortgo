@@ -26,7 +26,7 @@ func NewTradeAggregate(trades []float64) TradeAggregate {
 }
 
 // AggregateTrades returns a TradeAggregate based on the incoming trades slice, mutating the slice
-// This is nearly 4x faster than NewTradeAggregate
+// This is significantly faster than NewTradeAggregate
 // Use if the original order of incoming slice does not need to be retained
 func AggregateTrades(trades []float64) TradeAggregate {
 	//Mark first and last items in list of trades
