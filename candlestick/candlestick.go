@@ -1,8 +1,9 @@
 package candlestick
 
 import (
-	csgo "github.com/cpustejovsky/customsortgo/pure"
 	"sort"
+
+	csgo "github.com/cpustejovsky/customsortgo/pure"
 )
 
 type TradeAggregate struct {
@@ -16,7 +17,7 @@ type TradeAggregate struct {
 // This is nearly 4x slower than AggregateTrades
 // Use if you do not want to mutate your data
 func NewTradeAggregate(trades []float64) TradeAggregate {
-	sortedTrades := csgo.NewSortedFloats(trades)
+	sortedTrades := csgo.NewSorted(trades)
 	return TradeAggregate{
 		Open:  trades[0],
 		Close: trades[len(trades)-1],
