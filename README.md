@@ -22,7 +22,7 @@ import (
 
 func main() {
 	list := []string{"cat", "albatross", "dolphin", "bee", "zebra", "aardvark"}
-	sorted := csgo.NewSortedStrings(list)
+	sorted := csgo.NewSorted(list)
 	fmt.Println(list)   // [cat albatross dolphin bee zebra aardvark]
 	fmt.Println(sorted) // [aardvark albatross bee cat dolphin zebra]
 }
