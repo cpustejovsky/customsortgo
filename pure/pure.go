@@ -1,15 +1,12 @@
 package pure
 
 import (
+	"cmp"
 	"sort"
 )
 
 type Item interface {
-	int | float64 | string
-}
-
-func reserveSort(x sort.Interface) {
-	sort.Sort(sort.Reverse(x))
+	cmp.Ordered
 }
 
 func copySlice[I Item](original []I) []I {
@@ -18,38 +15,18 @@ func copySlice[I Item](original []I) []I {
 	return c
 }
 
-func NewSortedIntegers(ints []int) []int {
-	n := copySlice(ints)
-	sort.IntSlice(n).Sort()
+func NewSorted[I Item](items []I) []I {
+	n := copySlice(items)
+	sort.Slice(n, func(x, y int) bool {
+		return n[x] < n[y]
+	})
 	return n
 }
 
-func NewSortedFloats(float64s []float64) []float64 {
-	n := copySlice(float64s)
-	sort.Float64Slice(n).Sort()
+func NewReverseSorted[I Item](items []I) []I {
+	n := copySlice(items)
+	sort.Slice(n, func(x, y int) bool {
+		return n[x] > n[y]
+	})
 	return n
-}
-
-func NewSortedStrings(strings []string) []string {
-	s := copySlice(strings)
-	sort.StringSlice(s).Sort()
-	return append(s)
-}
-
-func NewReverseSortedIntegers(integers []int) []int {
-	n := copySlice(integers)
-	reserveSort(sort.IntSlice(n))
-	return n
-}
-
-func NewReverseSortedFloats(float64s []float64) []float64 {
-	n := copySlice(float64s)
-	reserveSort(sort.Float64Slice(n))
-	return n
-}
-
-func NewReverseSortedStrings(strings []string) []string {
-	s := copySlice(strings)
-	reserveSort(sort.StringSlice(s))
-	return s
 }
