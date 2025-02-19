@@ -5,9 +5,7 @@ import (
 	"sort"
 )
 
-type Item interface {
-	cmp.Ordered
-}
+type Item cmp.Ordered
 
 func copySlice[I Item](original []I) []I {
 	c := make([]I, len(original))
