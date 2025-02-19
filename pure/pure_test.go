@@ -1,14 +1,15 @@
 package pure_test
 
 import (
-	"github.com/cpustejovsky/customsortgo/pure"
 	"testing"
+
+	"github.com/cpustejovsky/customsortgo/pure"
 )
 
 func TestNewSortForStrings(t *testing.T) {
 	w := []string{"cat", "albatross", "dolphin", "bee", "zebra", "aardvark"}
 	want := []string{"aardvark", "albatross", "bee", "cat", "dolphin", "zebra"}
-	got := pure.NewSortedStrings(w)
+	got := pure.NewSorted(w)
 	if !equalStringSlices(want, got) {
 		t.Errorf("got:\n%v\nwanted:\n%v\n", got, want)
 	}
@@ -20,7 +21,7 @@ func TestNewSortForStrings(t *testing.T) {
 func TestNewReverseSortForStrings(t *testing.T) {
 	w := []string{"cat", "albatross", "dolphin", "bee", "zebra", "aardvark"}
 	want := []string{"zebra", "dolphin", "cat", "bee", "albatross", "aardvark"}
-	got := pure.NewReverseSortedStrings(w)
+	got := pure.NewReverseSorted(w)
 	if !equalStringSlices(want, got) {
 		t.Errorf("got:\n%v\nwanted:\n%v\n", got, want)
 	}
@@ -32,7 +33,7 @@ func TestNewReverseSortForStrings(t *testing.T) {
 func TestNewSortInts(t *testing.T) {
 	n := []int{1, 3, 5, 2, 7, 6, 4}
 	want := []int{1, 2, 3, 4, 5, 6, 7}
-	got := pure.NewSortedIntegers(n)
+	got := pure.NewSorted(n)
 	if !equalIntSlices(want, got) {
 		t.Errorf("got:\n%v\nwanted:\n%v\n", got, want)
 	}
@@ -44,7 +45,7 @@ func TestNewSortInts(t *testing.T) {
 func TestNewReverseSortInts(t *testing.T) {
 	n := []int{1, 3, 5, 2, 7, 6, 4}
 	want := []int{7, 6, 5, 4, 3, 2, 1}
-	got := pure.NewReverseSortedIntegers(n)
+	got := pure.NewReverseSorted(n)
 	if !equalIntSlices(want, got) {
 		t.Errorf("got:\n%v\nwanted:\n%v\n", got, want)
 	}
@@ -56,7 +57,7 @@ func TestNewReverseSortInts(t *testing.T) {
 func TestNewSortFloat64s(t *testing.T) {
 	n := []float64{1.1, 3.3, 5.5, 2.2, 7.7, 6.6, 4.4}
 	want := []float64{1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7}
-	got := pure.NewSortedFloats(n)
+	got := pure.NewSorted(n)
 	if !equalFloatSlices(want, got) {
 		t.Errorf("got:\n%v\nwanted:\n%v\n", got, want)
 	}
@@ -68,7 +69,7 @@ func TestNewSortFloat64s(t *testing.T) {
 func TestNewReverseSortFloat64s(t *testing.T) {
 	n := []float64{1.1, 3.3, 5.5, 2.2, 7.7, 6.6, 4.4}
 	want := []float64{7.7, 6.6, 5.5, 4.4, 3.3, 2.2, 1.1}
-	got := pure.NewReverseSortedFloats(n)
+	got := pure.NewReverseSorted(n)
 	if !equalFloatSlices(want, got) {
 		t.Errorf("got:\n%v\nwanted:\n%v\n", got, want)
 	}
